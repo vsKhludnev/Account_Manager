@@ -48,8 +48,11 @@ class Database():
     def delete_account_byname(self, name):
         if self.__search_account('name', name) != []:
             self.cursor.execute('DELETE FROM Accounts WHERE name = ?', (name,))
+            self.connect.commit()
         else:
             print('Запись c таким именем не найдена')
 
-    def edit_account(self):
-        pass
+    def edit_account(self, input_data):
+        self.delete_account_byname(input_data[1])
+        self.add_account(input_data)
+        self.connect.commit()
