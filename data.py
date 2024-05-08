@@ -8,7 +8,7 @@ class Database():
         self.cursor.execute('CREATE TABLE IF NOT EXISTS Users (login text, password text, security_question text, security_answer text)')
         self.cursor.execute('CREATE TABLE IF NOT EXISTS Accounts (category text, name text, login text, password text, addit text)')
 
-
+    # Блок Users
     def add_user(self, input_data):
         self.cursor.execute(f'INSERT INTO Users (login, password, security_question, security_answer) VALUES (?, ?, ?, ?)', (input_data))
         self.connect.commit()
@@ -19,4 +19,5 @@ class Database():
 
     def delete_user(self):
         self.cursor.execute('DELETE FROM Users')
+        self.cursor.execute('DELETE FROM Accounts')
         self.connect.commit()
