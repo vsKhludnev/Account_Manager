@@ -21,3 +21,35 @@ class Database():
         self.cursor.execute('DELETE FROM Users')
         self.cursor.execute('DELETE FROM Accounts')
         self.connect.commit()
+
+    # Блок Accounts
+    def __search_account(self, search_criteria, search_value):
+        self.cursor.execute(f'SELECT * FROM Accounts WHERE {search_criteria} = ?', (search_value,))
+        return self.cursor.fetchall()
+
+    def get_account_all(self):
+        self.cursor.execute('SELECT * FROM Accounts')
+        return self.cursor.fetchall()
+    
+    def get_account_byname(self, name):
+        return self.__search_account('name', name)
+        
+    def get_account_bycategory(self, category):
+        return self.__search_account('category', category)
+    
+    def add_account(self, input_data):
+        self.cursor.execute(f'INSERT INTO Accounts (category, name, login, password, addit) VALUES (?, ?, ?, ?, ?)', (input_data))
+        self.connect.commit()
+
+    def delete_account_all(self):
+        self.cursor.execute('DELETE FROM Accounts')
+        self.connect.commit()
+
+    def delete_account_byname(self, name):
+        if self.__search_account('name', name) != []:
+            self.cursor.execute('DELETE FROM Accounts WHERE name = ?', (name,))
+        else:
+            print('Запись c таким именем не найдена')
+
+    def edit_account(self):
+        pass
