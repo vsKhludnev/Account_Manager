@@ -8,6 +8,10 @@ class Database():
         self.cursor.execute('CREATE TABLE IF NOT EXISTS Users (login text, password text, security_question text, security_answer text)')
         self.cursor.execute('CREATE TABLE IF NOT EXISTS Accounts (category text, name text, login text, password text, addit text)')
 
+    def close_database(self):
+        self.connect.commit()
+        self.connect.close()
+
     # Блок Users
     def add_user(self, input_data):
         self.cursor.execute(f'INSERT INTO Users (login, password, security_question, security_answer) VALUES (?, ?, ?, ?)', (input_data))
