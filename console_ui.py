@@ -19,12 +19,45 @@ class Interface():
 
     def __registration(self):
         print('\n---Регистрация---')
-        login = input('Введите логин: ')
-        password = input('Введите пароль: ')
+        login = self.__input_login()
+        password = self.__input_password()
         print('Придумайте серкетный вопрос-ответ для вашего аккаунта: ')
-        security_question = input('Вопрос: ')
-        security_answer = input('Ответ: ')
+        security_question = self.__input_security_question()
+        security_answer = self.__input_security_answer()
         self.db.add_user((login, password, security_question, security_answer))
+
+    def __input_login(self):
+        while True:
+            login = input('Логин: ')
+            if len(login) >= 3:
+               return login
+            else:
+                print('Логин не должен быть короче трех символов')
+
+    def __input_password(self):
+        while True:
+            password = input('Пароль: ')
+            if len(password) >= 5:
+                return password
+            else:
+                print('Пароль не должен быть короче пяти символов')
+
+    def __input_security_question(self):
+        while True:
+            security_question = input('Вопрос: ')
+            if len(security_question) >= 5:
+                return security_question
+            else:
+                print('Пожалуйста придумайте адекватный впорос, вам же будет проще')
+
+    def __input_security_answer(self):
+        while True:
+            security_answer = input('Ответ: ')
+            if len(security_answer) > 0:
+                return security_answer
+            else:
+                print('Отвечайте на заданный вопрос!')
+        
 
     def __authorization(self, current_user_data):
         count = 3
@@ -80,6 +113,8 @@ class Interface():
                 pass
             elif choice == '5':
                 pass
+            elif choice == '/delete':
+                self.db.delete_user()
             
 
     def get_menu(self):
