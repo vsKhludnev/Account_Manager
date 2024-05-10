@@ -36,10 +36,10 @@ class Interface():
             if login == current_user_data[0][0] and password == current_user_data[0][1]:
                 return True
             elif count > 1:
-                print('Неккореткный ввод, попробуйте еще раз')
+                print('\033[31m Некорректный ввод\033[0m, попробуйте еще раз')
                 count -= 1
             else:
-                print('Неккореткный ввод, попробуйте атворизоваться через "вопрос-ответ"')
+                print('\033[31m Неккореткный ввод\033[0m, попробуйте авторизоваться через "вопрос-ответ"')
                 return self.__reserve_authorization(current_user_data)
         
     def __reserve_authorization(self, current_user_data):
@@ -52,7 +52,7 @@ class Interface():
             if answer == current_user_data[0][3]:
                 return True
             elif count > 1:
-                print('Неккореткный ввод, попробуйте еще раз')
+                print('\033[31m Некорреткный ввод\033[0m, попробуйте еще раз')
                 count -= 1
             else:
                 return False
