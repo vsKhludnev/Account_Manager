@@ -32,7 +32,7 @@ class Interface():
             if len(login) >= 3:
                return login
             else:
-                print('Логин не должен быть короче трех символов')
+                print('\n Логин не должен быть короче трех символов')
 
     def __input_password(self):
         while True:
@@ -40,7 +40,7 @@ class Interface():
             if len(password) >= 5:
                 return password
             else:
-                print('Пароль не должен быть короче пяти символов')
+                print('\n Пароль не должен быть короче пяти символов')
 
     def __input_security_question(self):
         while True:

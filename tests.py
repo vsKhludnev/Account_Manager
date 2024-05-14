@@ -39,3 +39,20 @@ test(f'Delete {input_account_1[1]} account', [input_account_2,input_account_3], 
 # Удаление всех записей
 test_db.delete_account_all()
 test('Delete all accounts', [], test_db.get_account_all())
+
+
+test_db.delete_user()
+
+
+# Тестирование интерфейса
+from console_ui import Interface
+class TestInterface(Interface):
+    def __init__(self):
+        super().__init__()
+        self.db = Database('Test_database.db')
+
+test_interface = TestInterface()
+
+# Тестирование регистрации и авторизации
+test_interface.log_in()
+test_interface.log_in()
